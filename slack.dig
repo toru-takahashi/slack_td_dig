@@ -1,0 +1,22 @@
+timezone: Asia/Tokyo
+
+schedule:
+  daily>: 02:00:00
+
+_export:
+  rb:
+    require: 'tasks/slack'
+  channel_prefix: 'customer-'
+  td_database: 'slack'
+  td_table: 'history_test'
+
++listing_channels:
+  rb>: SlackHistory.channels
+
++looping_channles:
+  loop>: ${channels.length}
+  _do:
+    +step:
+      _export: 
+        channel: ${channels[i]}
+      rb>: SlackHistory.history
