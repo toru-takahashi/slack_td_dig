@@ -41,7 +41,9 @@ class SlackHistory
         inclusive: true,
         count: 1000
       )
-
+      
+      break if history['messages'].nil?
+      
       puts "Sending #{history['messages'].length} records from #{channel['id']}-#{channel['name']} less than #{latest}..."
       
       history['messages'].each do |message|
