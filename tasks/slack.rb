@@ -25,7 +25,7 @@ class SlackHistory
     # TODO: Use Secret by rb operator
     token = File.read(File.expand_path('~/.config/digdag/secrets/slack_td.token'))
     apikey = File.read(File.expand_path('~/.config/digdag/secrets/slack_td.td_apikey'))
-    client = Slack::Web::Client.new(token: Digdag.env.params['token'])
+    client = Slack::Web::Client.new(token: token)
     oldest =  Digdag.env.params['last_session_unixtime'] || 0
     latest = Digdag.env.params['session_unixtime']
 
