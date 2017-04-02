@@ -26,7 +26,7 @@ class SlackHistory
     token = File.read(File.expand_path('~/.config/digdag/secrets/slack_td.token'))
     apikey = File.read(File.expand_path('~/.config/digdag/secrets/slack_td.td_apikey'))
     client = Slack::Web::Client.new(token: token)
-    oldest =  Digdag.env.params['last_session_unixtime'] || 0
+    oldest = 0
     latest = Digdag.env.params['session_unixtime']
 
     TreasureData::Logger.open(Digdag.env.params['td_database'], :apikey => apikey, :auto_create_table => true)
@@ -66,6 +66,18 @@ class SlackHistory
       message_reactions: message['reactions'],
       message_wibblr: message['wibblr']
     }
+  end
+
+  def users
+    token = File.read(File.expand_path('~/.config/digdag/secrets/slack_td.token'))
+    apikey = File.read(File.expand_path('~/.config/digdag/secrets/slack_td.td_apikey'))
+    client = Slack::Web::Client.new(token: token)
+
+    TreasureData::Logger.open(Digdag.env.params['td_database'], :apikey => apikey, :auto_create_table => true)
+
+    client.users_list.members.each do |member|
+      TD.event.post(Digdag.env.params['td_table'], member)
+    end
   end
 
 end

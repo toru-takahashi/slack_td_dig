@@ -1,0 +1,21 @@
+timezone: Asia/Tokyo
+
+schedule:
+  weekly>: SUN,02:00:00
+
+_export:
+  rb:
+    require: 'tasks/slack'
+  td_database: 'slack'
+  td_table: 'users'
+
++crean_table:
+  _export:
+    td:
+      database: ${td_database}
+  td_ddl>:
+  drop_tables: ["${td_table}"]
+
+
++listing_channels:
+  rb>: SlackHistory.users

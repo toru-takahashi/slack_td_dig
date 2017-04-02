@@ -6,7 +6,8 @@ This workflow ingests Slack history in daily basis, and exports it to TreasureDa
 ## Requirement
 
 - [Slack Token](https://api.slack.com/web)
-  - Access Scope requries **channels.history** and **channels.info**
+  - For history, Access Scope requries **channels.history** and **channels.info**
+  - For users, Access Scope requires **users:read**
 - [TreasureData APIKEY](https://console.treasuredata.com/app/users/current)
 
 ## How to use

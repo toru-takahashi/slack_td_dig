@@ -8,7 +8,7 @@ _export:
     require: 'tasks/slack'
   channel_prefix: 'customer-'
   td_database: 'slack'
-  td_table: 'history_test'
+  td_table: 'history'
 
 +listing_channels:
   rb>: SlackHistory.channels
