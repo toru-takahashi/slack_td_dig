@@ -1,0 +1,10 @@
+timezone: Asia/Tokyo
+
+schedule:
+  daily>: 20:00:00
+
++upload_user_fields_number:
+  sh>: embulk run zendesk_users_number.yml
+
++upload_user_fields_text_date:
+  sh>: embulk run zendesk_users_text_date.yml
